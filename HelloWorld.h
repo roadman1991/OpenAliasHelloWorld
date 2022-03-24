@@ -1,13 +1,13 @@
 #ifndef HELLOWWORLD_H
 #define HELLOWORLD_H
-
+#include <iostream>
 class helloWorld
 {
     
 public:
     void printMessage() 
     {
-        cout << "Hello World";
+        std::cout << "Hello World";
     }
     
 };
