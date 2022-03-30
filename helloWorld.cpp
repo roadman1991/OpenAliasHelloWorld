@@ -25,7 +25,7 @@
 #include <AlLiveData.h>
 #include <AlFunctionHandle.h>
 #include <AlFunction.h>
-
+#include <AlContinuousFunction>
 // 
 #include <windows.h>
 
@@ -36,22 +36,40 @@
 // Local includes
 #include "helloWorld.h"
 
-
 static void createMessage()
 {
 	helloWorld msg;
 	msg.printMessage();
+	int n_row = 10
+	int n_col = 10
+	std::string myArray[n_row][n_col];
+	for (int row = 0; row < n_row; row++)
+    {
+        for (int col=0; col < n_col; col++)
+        {
+            myArray[row][col] = 'EMPTY';
+        }
+        
+    }
+	twodarray2csv(myArray, "outputfile.csv");
 
 }
 
-void destroyWindow()
+void twodarray2csv(std::string(&array)[row][col], std::string filename)
 {
-	if (mainWindow != NULL)
-	{
-		DestroyWindow(mainWindow);
-	}
-	freePluginNameString();
-}
+	std::ofstream myfile;
+    myfile.open(filename);
+    
+    for (size_t i = 0; i < row; ++i)
+    {
+        for (size_t j = 0; j < col; ++j)
+            if (j < (col - 1)) {
+                myfile << array[i][j] << ",";
+            }
+            else if (j == (col - 1)) {
+                myfile << array[i][j] << "\n";
+            }
+    }
 
 //
 // Standard plug-in handles and functions
@@ -64,19 +82,16 @@ PLUGINAPI_DECL int plugin_init(const char* path)
 {
 	AlUniverse::initialize();
 	hFunc.create("HelloWorld Plug-in", createMessage);
-
 	h.create("HelloWorld_Plug", &hFunc);
 	h.addToMenu("mp_objtools");
 
 	AlPrintf(kPrompt, "The Dialog Box plug-in is installed on Palette 'Object Edit'");
-
 	return 0;
 }
 
 extern "C"
 PLUGINAPI_DECL int plugin_exit(void)
 {
-	destroyWindow();
 	h.deleteObject();
 	hFunc.deleteObject();
 	return 0;
