@@ -25,7 +25,6 @@
 #include <AlLiveData.h>
 #include <AlFunctionHandle.h>
 #include <AlFunction.h>
-#include <AlContinuousFunction>
 // 
 #include <windows.h>
 
