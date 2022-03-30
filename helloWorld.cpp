@@ -36,6 +36,25 @@
 // Local includes
 #include "helloWorld.h"
 
+void twodarray2csv(std::string(&array)[row][col], std::string filename)
+{
+	std::ofstream myfile;
+    myfile.open(filename);
+    
+    for (size_t i = 0; i < row; ++i)
+    {
+        for (size_t j = 0; j < col; ++j)
+            if (j < (col - 1)) 
+			{
+                myfile << array[i][j] << ",";
+            }
+            else if (j == (col - 1)) 
+			{
+                myfile << array[i][j] << "\n";
+            }
+    }
+}
+
 static void createMessage()
 {
 	helloWorld msg;
@@ -54,22 +73,6 @@ static void createMessage()
 	twodarray2csv(myArray, "outputfile.csv");
 
 }
-
-void twodarray2csv(std::string(&array)[row][col], std::string filename)
-{
-	std::ofstream myfile;
-    myfile.open(filename);
-    
-    for (size_t i = 0; i < row; ++i)
-    {
-        for (size_t j = 0; j < col; ++j)
-            if (j < (col - 1)) {
-                myfile << array[i][j] << ",";
-            }
-            else if (j == (col - 1)) {
-                myfile << array[i][j] << "\n";
-            }
-    }
 
 //
 // Standard plug-in handles and functions
