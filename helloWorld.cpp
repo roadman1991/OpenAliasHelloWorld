@@ -61,7 +61,7 @@ static void createMessage()
 	msg.printMessage();
 	int n_row = 10
 	int n_col = 10
-	std::string myArray[n_row][n_col];
+	string myArray[n_row][n_col];
 	for (int row = 0; row < n_row; row++)
     {
         for (int col=0; col < n_col; col++)
