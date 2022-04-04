@@ -28,16 +28,14 @@
 // 
 #include <windows.h>
 
-#include <iostream>
-#include <string>
-#include <fstream>
-
 // Standard C libraries
 #include "string.h"
 #include <stdlib.h>
 
 // Local includes
 #include "helloWorld.h"
+#include <iostream>
+#include <fstream>
 
 void twodarray2csv(std::string array[][3], std::string filename)
 {
