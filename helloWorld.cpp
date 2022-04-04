@@ -28,6 +28,10 @@
 // 
 #include <windows.h>
 
+#include <iostream>
+#include <string>
+#include <fstream>
+
 // Standard C libraries
 #include "string.h"
 #include <stdlib.h>
