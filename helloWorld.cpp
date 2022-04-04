@@ -63,7 +63,7 @@ void twodarray2csv(std::string array[][3], std::string filename)
 
 static void createMessage()
 {
-	std::string myarray[2][3] = 
+	std::string myArray[2][3] = 
     {
         { "hello", "jack", "dawson" },
         { "servus", "max", "mustermann" }
