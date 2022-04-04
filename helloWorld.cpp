@@ -68,7 +68,7 @@ static void createMessage()
         { "hello", "jack", "dawson" },
         { "servus", "max", "mustermann" }
     };
-	twodarray2csv(myArray, "outputfile.csv");
+	twodarray2csv(myArray, "c:/outputfile.csv");
 
 }
 
