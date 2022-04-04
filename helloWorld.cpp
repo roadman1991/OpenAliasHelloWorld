@@ -35,40 +35,37 @@
 // Local includes
 #include "helloWorld.h"
 
-void twodarray2csv(std::string(&array)[row][col], std::string filename)
+void twodarray2csv(std::string array[][3], std::string filename)
 {
-	std::ofstream myfile;
-    myfile.open(filename);
-    
-    for (size_t i = 0; i < row; ++i)
+    std::ofstream myFile;
+    myFile.open(filename);
+
+    for (size_t i = 0; i < sizeof(array); ++i)
     {
-        for (size_t j = 0; j < col; ++j)
-            if (j < (col - 1)) 
-			{
-                myfile << array[i][j] << ",";
+        for (size_t j = 0; j < 3; ++j)
+      {
+            if (j < (3 - 1))
+            {
+                myFile << array[i][j] << ",";
             }
-            else if (j == (col - 1)) 
-			{
-                myfile << array[i][j] << "\n";
+            else if (j == (3 - 1))
+            {
+                myFile << array[i][j] << "\n";
             }
+        }
     }
+    myFile.close();
+
+
 }
 
 static void createMessage()
 {
-	helloWorld msg;
-	msg.printMessage();
-	int n_row = 10
-	int n_col = 10
-	string myArray[n_row][n_col];
-	for (int row = 0; row < n_row; row++)
+	std::string myarray[2][3] = 
     {
-        for (int col=0; col < n_col; col++)
-        {
-            myArray[row][col] = 'EMPTY';
-        }
-        
-    }
+        { "hello", "jack", "dawson" },
+        { "servus", "max", "mustermann" }
+    };
 	twodarray2csv(myArray, "outputfile.csv");
 
 }
