@@ -36,6 +36,69 @@
 #include "helloWorld.h"
 #include <iostream>
 #include <fstream>
+AlUniverse::AlFileType
+getFileType(int format)
+{
+    switch (format)
+    {
+    case 9:
+        return AlUniverse::kNx;
+    case 8:
+        return AlUniverse::kVdais;
+    case 7: 
+        return AlUniverse::kJamais;
+    case 6:
+        return AlUniverse::kC4x;
+    case 5: 
+        return AlUniverse::kDxf;
+    case 4: 
+        return AlUniverse::kJT;
+    case 3:
+        return AlUniverse::kEdf;
+    case 2:
+        return AlUniverse::kCatiaV5;
+    case 1:
+        return AlUniverse::kIges;
+    case 0:
+    default:
+        break;
+    }
+    
+    return AlUniverse::kWire;
+}
+
+// See saveLayers.scm to match the AlFileTypes to
+// the number in the UI.
+char*
+getFileExtension(int format)
+{
+    switch (format)
+    {
+    case 9:
+        return "nx";
+    case 8:
+        return "vdais";
+    case 7: 
+        return "jamais";
+    case 6:
+        return "c4x";
+    case 5: 
+        return "dxf";
+    case 4: 
+        return "jt";
+    case 3:
+        return "edf";
+    case 2:
+        return "catV5";
+    case 1:
+        return "igs";
+    case 0:
+    default:
+        break;
+    }
+    
+    return "wire";
+}
 
 void twodarray2csv(std::string array[][3], std::string filename)
 {
@@ -84,7 +147,21 @@ PLUGINAPI_DECL int plugin_init(const char* path)
 	AlUniverse::initialize();
 	hFunc.create("HelloWorld Plug-in", createMessage);
 	h.create("HelloWorld_Plug", &hFunc);
-	h.addToMenu("mp_objtools");
+
+	//Initialize default values in the option box.
+	char *dirScm = makeAltPath( dirName, "scm" );
+	AlInvokeSchemeFile( "saveLayers_init.scm", dirScm );
+
+
+	h.setOptionBox( "saveLayers.scm", "save_layers.options", dirScm );
+		//	Then the scheme file and the icon images would be loaded from
+	//	the same path as the plugin rather than from the standard locations
+	h.setIconPath( makeAltPath( dirName, NULL ) );
+
+	// Indicate which menu to add the plugin to. addToMenu()
+	// adds the plugin to the bottom of the menu, while
+	// appendToMenu() will add it to the top of the menu.
+	h.addToMenu( "ma_layers" );
 
 	AlPrintf(kPrompt, "The Dialog Box plug-in is installed on Palette 'Object Edit'");
 	return 0;
