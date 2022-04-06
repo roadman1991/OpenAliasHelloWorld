@@ -149,14 +149,14 @@ PLUGINAPI_DECL int plugin_init(const char* path)
 	h.create("HelloWorld_Plug", &hFunc);
 
 	//Initialize default values in the option box.
-	char *dirScm = makeAltPath( dirName, "scm" );
+	char *dirScm = makeAltPath( path, "scm" );
 	AlInvokeSchemeFile( "saveLayers_init.scm", dirScm );
 
 
 	h.setOptionBox( "saveLayers.scm", "save_layers.options", dirScm );
 		//	Then the scheme file and the icon images would be loaded from
 	//	the same path as the plugin rather than from the standard locations
-	h.setIconPath( makeAltPath( dirName, NULL ) );
+	h.setIconPath( makeAltPath( path, NULL ) );
 
 	// Indicate which menu to add the plugin to. addToMenu()
 	// adds the plugin to the bottom of the menu, while
