@@ -131,10 +131,13 @@ void doIt()
 		AlLayer *layer = AlUniverse::firstLayer();
 		AlDagNode *dagNode = AlUniverse::firstDagNode();
 		std::list<AlDagNode> listDagNodes;
+		int i = 0:
 	while (*dagNode)
 	{
-		listDagNodes.insert(dagNode);
-		dagnode = dagNode.nextNode();
+
+		listDagNodes.insert(i, dagNode);
+		dagNode = dagNode.nextNode();
+		i++;
 		//Either we save all layers or the layer must be visible
 		//or the layer must be a construction layer.
 		/*if(save || !layer->invisible() || 
