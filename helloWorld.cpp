@@ -25,6 +25,7 @@
 #include <AlLiveData.h>
 #include <AlFunctionHandle.h>
 #include <AlFunction.h>
+#include <AlDagNode.h>
 // 
 #include <windows.h>
 
