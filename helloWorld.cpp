@@ -36,6 +36,7 @@
 #include "helloWorld.h"
 #include <iostream>
 #include <fstream>
+#include <list>
 AlUniverse::AlFileType
 getFileType(int format)
 {
@@ -132,7 +133,7 @@ void doIt()
 	while (*dagNode)
 	{
 		listDagNodes.insert(dagNode);
-		dagNode = dagNode::nextNode();
+		dagNode = AlDagNode::nextNode();
 		//Either we save all layers or the layer must be visible
 		//or the layer must be a construction layer.
 		/*if(save || !layer->invisible() || 
