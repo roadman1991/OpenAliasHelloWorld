@@ -124,6 +124,70 @@ void twodarray2csv(std::string array[][3], std::string filename)
 
 }
 
+void doIt()
+{
+		AlLayer *layer = AlUniverse::firstLayer();
+		AlDagNode *dagNode = AlUniverse::firstDagNode();
+		std::list<AlDagNode> listDagNodes;
+	while (*dagNode)
+	{
+		listDagNodes.insert(dagNode);
+		dagNode = dagNode::nextNode();
+		//Either we save all layers or the layer must be visible
+		//or the layer must be a construction layer.
+		/*if(save || !layer->invisible() || 
+			AlLayerExt::isConstructionLayer(layer->number()))
+		{
+			if (pickedOnly && !layer->isPicked())
+			{
+				layer = AlUniverse::nextLayer(layer);
+				continue;
+			}
+
+			//Clear the pick list and select only the nodes
+			//in this particular layer.
+			AlLayerExt::pickNodesOnLayer(layer->number());
+	
+			//The name of the file is the file name without .wire
+			//extension concatenated with the layer name.
+			sprintf(fileName, "%s_%s.%s", fileWithoutWire, layer->name(), getFileExtension(format));
+			sprintf(buffer, "%s\\%s", dirName, fileName);
+
+			//Verify that fileName does not already exist and if so whether 
+			//it should be overwritten. Otherwise prompt the user to enter
+			//a new name instead of fileName.
+			if(!overwriteAll)
+				rc = AlLayerExt::verifyFileName(buffer, fileName);
+
+			if(rc == FileDoesNotExist || rc == DialogBoxYES || rc == DialogBoxYESALL)
+			{
+				//Save the nodes in this layer to the location and
+				//filename specified by buffer.
+                if(sSuccess != AlUniverseExt::store(buffer, true, getFileType(format) ) )
+ 				//if(sSuccess != AlUniverse::storeActive(buffer))
+				{
+					fprintf(stderr, "^G\n");
+					AlPrintf(kPrompt, "*** ERROR: Could not save layer %s.\n", buffer);
+				}
+
+				//Set overwrite flag so that we do not query user for
+				//overwrite permissions needlessly.
+				if(rc == DialogBoxYESALL)
+					overwriteAll = TRUE;
+			}
+			else if(rc == DialogBoxNO)
+				AlPrintf(kPrompt, "*** Did not save layer %s.\n", buffer);
+			else if(rc == DialogBoxCANCEL)
+			{
+				AlPrintf(kPrompt, "*** Save layers aborted.\n");
+				break;
+			}
+		}
+
+		//Proceed to the next layer in the scene.
+		layer = AlUniverse::nextLayer(layer);*/
+	}
+}
 static void createMessage()
 {
 	std::string myArray[2][3] = 
@@ -132,8 +196,11 @@ static void createMessage()
         { "servus", "max", "mustermann" }
     };
 	twodarray2csv(myArray, "c:/outputfile.csv");
+	doIt();
 
 }
+
+
 
 //
 // Standard plug-in handles and functions
