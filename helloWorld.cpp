@@ -134,7 +134,7 @@ void doIt()
 	while (*dagNode)
 	{
 		listDagNodes.insert(dagNode);
-		dagNode = AlDagNode::nextNode();
+		dagnode = dagNode.nextNode();
 		//Either we save all layers or the layer must be visible
 		//or the layer must be a construction layer.
 		/*if(save || !layer->invisible() || 
