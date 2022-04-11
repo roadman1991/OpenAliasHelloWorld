@@ -26,6 +26,9 @@
 #include <AlFunctionHandle.h>
 #include <AlFunction.h>
 #include <AlDagNode.h>
+#include <AlSurfaceNode.h>
+#include <AlObject.h>
+
 // 
 #include <windows.h>
 
@@ -128,18 +131,39 @@ void twodarray2csv(std::string array[][3], std::string filename)
 
 void doIt()
 {
+		
+		
+		
 		const char* currentStage = AlUniverse::currentStage();
 		const char* stageWireFileName = AlUniverse::stageWireFileName(currentStage);
-		AlLayer *layer = AlUniverse::firstLayer();
+		//AlLayer *layer = AlUniverse::firstLayer();
 		AlDagNode *dagNode = AlUniverse::firstDagNode();
-		std::list<string> column;
-		std::list<string> row;
+		AlSurfaceNode *surface;
+		std::list<std::list<const char*>> surfaces;
+		std::list<const char*> row;  //empty list
+		const char* surface_name;
+		
+		
 
-	while (*dagNode)
+	while (dagNode)
 	{
-
-		row.push_back(dagNode);
+		// empty row ....
+		if( surface = dagNode->asSurfaceNodePtr() ){
+			//row.push_back(surface->name());
+						
+			surface_name = surface->name();			
+			row.push_back(surface_name);
+			// getshader ....siehe Email
+			
+			
+			surfaces.push_back(row);
+		}
+		
+		
+		//row garbage collection
+		
 		dagNode = dagNode->nextNode();
+		
 		//Either we save all layers or the layer must be visible
 		//or the layer must be a construction layer.
 		/*if(save || !layer->invisible() || 
@@ -194,6 +218,16 @@ void doIt()
 		//Proceed to the next layer in the scene.
 		layer = AlUniverse::nextLayer(layer);*/
 	}
+	
+	
+	
+	//get len of surfaces
+	
+	// declare array n_rows = len of surfaces, n_cols = n_features (name, mat...)
+	
+	// create csv
+	
+	
 }
 static void createMessage()
 {
