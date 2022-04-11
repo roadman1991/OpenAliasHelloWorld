@@ -128,13 +128,17 @@ void twodarray2csv(std::string array[][3], std::string filename)
 
 void doIt()
 {
+		const char* currentStage = AlUniverse::currentStage();
+		const char* stageWireFileName = AlUniverse::stageWireFileName(currentStage);
 		AlLayer *layer = AlUniverse::firstLayer();
 		AlDagNode *dagNode = AlUniverse::firstDagNode();
-		std::list<AlDagNode> listDagNodes;
+		std::list<string> column;
+		std::list<string> row;
+
 	while (*dagNode)
 	{
 
-		listDagNodes.push_back(dagNode);
+		row.push_back(dagNode);
 		dagNode = dagNode->nextNode();
 		//Either we save all layers or the layer must be visible
 		//or the layer must be a construction layer.
