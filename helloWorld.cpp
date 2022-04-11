@@ -27,7 +27,10 @@
 #include <AlFunction.h>
 #include <AlDagNode.h>
 #include <AlSurfaceNode.h>
+#include <AlSurface.h>
 #include <AlObject.h>
+#include <AlShader.h>
+#include <AlLayer.h>
 
 // 
 #include <windows.h>
@@ -138,29 +141,39 @@ void doIt()
 		const char* stageWireFileName = AlUniverse::stageWireFileName(currentStage);
 		//AlLayer *layer = AlUniverse::firstLayer();
 		AlDagNode *dagNode = AlUniverse::firstDagNode();
-		AlSurfaceNode *surface;
+		AlLayer *layer;
+		AlShader *shader;
+		AlSurfaceNode *surface_node;
+		AlSurface *surface;
 		std::list<std::list<const char*>> surfaces;
 		std::list<const char*> row;  //empty list
 		const char* surface_name;
+		const char* layer_name;
+		const char* node_name;
+		const char* shader_name;
 		
 		
 
 	while (dagNode)
 	{
-		// empty row ....
-		if( surface = dagNode->asSurfaceNodePtr() ){
-			//row.push_back(surface->name());
-						
-			surface_name = surface->name();			
+		
+		if( surface_node = dagNode->asSurfaceNodePtr() ){
+			
+			surface_name = surface_node->name();			
 			row.push_back(surface_name);
-			// getshader ....siehe Email
-			
-			
+			layer = dagNode->layer();
+			layer_name = layer->name();
+			row.push_back(layer_name);
+			node_name = dagNode->name();
+			row.push_back(node_name);
+			surface = surface_node->surface();
+			shader = surface->firstShader();
+			shader_name = shader->name();			
 			surfaces.push_back(row);
 		}
 		
 		
-		//row garbage collection
+		row.clear();
 		
 		dagNode = dagNode->nextNode();
 		
