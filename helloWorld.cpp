@@ -108,20 +108,20 @@ getFileExtension(int format)
     return "wire";
 }
 
-void twodarray2csv(std::string array[][3], std::string filename)
+void twodarray2csv(std::string array[][4], std::string filename)
 {
     std::ofstream myFile;
     myFile.open(filename);
 
     for (size_t i = 0; i < sizeof(array); ++i)
     {
-        for (size_t j = 0; j < 3; ++j)
+        for (size_t j = 0; j < 4; ++j)
       {
-            if (j < (3 - 1))
+            if (j < (4 - 1))
             {
                 myFile << array[i][j] << ",";
             }
-            else if (j == (3 - 1))
+            else if (j == (4 - 1))
             {
                 myFile << array[i][j] << "\n";
             }
@@ -151,15 +151,13 @@ void doIt()
 		const char* layer_name;
 		const char* node_name;
 		const char* shader_name;
-		
-		
 
 	while (dagNode)
 	{
 		
-		if( surface_node = dagNode->asSurfaceNodePtr() ){
-			
-			surface_name = surface_node->name();			
+		if( surface_node = dagNode->asSurfaceNodePtr())
+		{
+			surface_name = surface_node->name();
 			row.push_back(surface_name);
 			layer = dagNode->layer();
 			layer_name = layer->name();
@@ -168,14 +166,13 @@ void doIt()
 			row.push_back(node_name);
 			surface = surface_node->surface();
 			shader = surface->firstShader();
-			shader_name = shader->name();			
+			shader_name = shader->name();
 			surfaces.push_back(row);
 		}
-		
-		
+
+		twodarray2csv(row, "c:/outputfile.csv");
 		row.clear();
 		
-		dagNode = dagNode->nextNode();
 		
 		//Either we save all layers or the layer must be visible
 		//or the layer must be a construction layer.
@@ -244,12 +241,6 @@ void doIt()
 }
 static void createMessage()
 {
-	std::string myArray[2][3] = 
-    {
-        { "hello", "jack", "dawson" },
-        { "servus", "max", "mustermann" }
-    };
-	twodarray2csv(myArray, "c:/outputfile.csv");
 	doIt();
 
 }
