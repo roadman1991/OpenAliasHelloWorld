@@ -135,8 +135,8 @@ void twodarray2csv(std::string array[][4], std::string filename)
 void doIt()
 {
 		
-		
-		
+		myFile.open("c:/outputfile.csv");
+		std::ofstream myFile;
 		const char* currentStage = AlUniverse::currentStage();
 		const char* stageWireFileName = AlUniverse::stageWireFileName(currentStage);
 		//AlLayer *layer = AlUniverse::firstLayer();
@@ -168,9 +168,8 @@ void doIt()
 			shader = surface->firstShader();
 			shader_name = shader->name();
 			surfaces.push_back(row);
+			myFile << surface_name + "," + layer_name + "," + node_name + "," + shader_name + "\n";
 		}
-
-		twodarray2csv(row, "c:/outputfile.csv");
 		row.clear();
 		
 		
@@ -236,7 +235,7 @@ void doIt()
 	// declare array n_rows = len of surfaces, n_cols = n_features (name, mat...)
 	
 	// create csv
-	
+	myFile.close();
 	
 }
 static void createMessage()
