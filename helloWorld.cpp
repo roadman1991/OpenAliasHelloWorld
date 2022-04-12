@@ -151,96 +151,39 @@ void doIt()
 		const char* node_name;
 		const char* shader_name;
 
-	while (dagNode)
+	for(int j = 0; j < 100; j++)
 	{
-		
+		int i = 0;
+		AlPrintf(kPrompt, i);
 		if( surface_node = dagNode->asSurfaceNodePtr())
 		{
 			surface_name = surface_node->name();
+			AlPrintf(kPrompt, surface_name);
 			row.push_back(surface_name);
 			layer = dagNode->layer();
 			layer_name = layer->name();
+			AlPrintf(kPrompt, layer_name);
 			row.push_back(layer_name);
 			node_name = dagNode->name();
 			row.push_back(node_name);
+			AlPrintf(kPrompt, node_name);
 			surface = surface_node->surface();
 			shader = surface->firstShader();
 			shader_name = shader->name();
+			AlPrintf(kPrompt, shader_name);
 			surfaces.push_back(row);
 			myFile << surface_name << "," << layer_name << "," << node_name << "," << shader_name << "\n";
 		}
 		row.clear();
-		
-		
-		//Either we save all layers or the layer must be visible
-		//or the layer must be a construction layer.
-		/*if(save || !layer->invisible() || 
-			AlLayerExt::isConstructionLayer(layer->number()))
-		{
-			if (pickedOnly && !layer->isPicked())
-			{
-				layer = AlUniverse::nextLayer(layer);
-				continue;
-			}
-
-			//Clear the pick list and select only the nodes
-			//in this particular layer.
-			AlLayerExt::pickNodesOnLayer(layer->number());
-	
-			//The name of the file is the file name without .wire
-			//extension concatenated with the layer name.
-			sprintf(fileName, "%s_%s.%s", fileWithoutWire, layer->name(), getFileExtension(format));
-			sprintf(buffer, "%s\\%s", dirName, fileName);
-
-			//Verify that fileName does not already exist and if so whether 
-			//it should be overwritten. Otherwise prompt the user to enter
-			//a new name instead of fileName.
-			if(!overwriteAll)
-				rc = AlLayerExt::verifyFileName(buffer, fileName);
-
-			if(rc == FileDoesNotExist || rc == DialogBoxYES || rc == DialogBoxYESALL)
-			{
-				//Save the nodes in this layer to the location and
-				//filename specified by buffer.
-                if(sSuccess != AlUniverseExt::store(buffer, true, getFileType(format) ) )
- 				//if(sSuccess != AlUniverse::storeActive(buffer))
-				{
-					fprintf(stderr, "^G\n");
-					AlPrintf(kPrompt, "*** ERROR: Could not save layer %s.\n", buffer);
-				}
-
-				//Set overwrite flag so that we do not query user for
-				//overwrite permissions needlessly.
-				if(rc == DialogBoxYESALL)
-					overwriteAll = TRUE;
-			}
-			else if(rc == DialogBoxNO)
-				AlPrintf(kPrompt, "*** Did not save layer %s.\n", buffer);
-			else if(rc == DialogBoxCANCEL)
-			{
-				AlPrintf(kPrompt, "*** Save layers aborted.\n");
-				break;
-			}
-		}
-
-		//Proceed to the next layer in the scene.
-		layer = AlUniverse::nextLayer(layer);*/
+		i++;
 	}
-	
-	
-	
-	//get len of surfaces
-	
-	// declare array n_rows = len of surfaces, n_cols = n_features (name, mat...)
-	
-	// create csv
 	myFile.close();
-	
-}
 static void createMessage()
-{
+	{
+	AlPrintf(kPrompt, "Hello-World!");
 	doIt();
 
+	}
 }
 
 
