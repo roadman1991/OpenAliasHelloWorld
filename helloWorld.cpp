@@ -108,32 +108,10 @@ getFileExtension(int format)
     return "wire";
 }
 
-void twodarray2csv(std::string array[][4], std::string filename)
-{
-    std::ofstream myFile;
-    myFile.open(filename);
-
-    for (size_t i = 0; i < sizeof(array); ++i)
-    {
-        for (size_t j = 0; j < 4; ++j)
-      {
-            if (j < (4 - 1))
-            {
-                myFile << array[i][j] << ",";
-            }
-            else if (j == (4 - 1))
-            {
-                myFile << array[i][j] << "\n";
-            }
-        }
-    }
-    myFile.close();
-
-
-}
-
 void doIt()
 {
+		
+		AlPrintf(kPrompt, "startin do it");
 		std::ofstream myFile;
 		myFile.open("c:/outputfile.csv");
 		const char* currentStage = AlUniverse::currentStage();
@@ -151,39 +129,50 @@ void doIt()
 		const char* node_name;
 		const char* shader_name;
 
-	for(int j = 0; j < 100; j++)
+	//while (dagNode)
+	for (int i = 0; i < 3; i++)
 	{
-		int i = 0;
-		AlPrintf(kPrompt, i);
-		if( surface_node = dagNode->asSurfaceNodePtr())
+		AlPrintf(kPrompt, "loop");
+		/*if( surface_node = dagNode->asSurfaceNodePtr())
 		{
-			surface_name = surface_node->name();
-			AlPrintf(kPrompt, surface_name);
-			row.push_back(surface_name);
+			//surface_name = surface_node->name();
+			//row.push_back(surface_name);
 			layer = dagNode->layer();
 			layer_name = layer->name();
-			AlPrintf(kPrompt, layer_name);
-			row.push_back(layer_name);
-			node_name = dagNode->name();
-			row.push_back(node_name);
-			AlPrintf(kPrompt, node_name);
-			surface = surface_node->surface();
-			shader = surface->firstShader();
-			shader_name = shader->name();
-			AlPrintf(kPrompt, shader_name);
-			surfaces.push_back(row);
-			myFile << surface_name << "," << layer_name << "," << node_name << "," << shader_name << "\n";
-		}
-		row.clear();
-		i++;
+			//row.push_back(layer_name);
+			AlPrintf(kPrompt, "loop");
+			//node_name = dagNode->name();
+			//row.push_back(node_name);
+			//surface = surface_node->surface();
+			//shader = surface->firstShader();
+			//shader_name = shader->name();
+			//surfaces.push_back(row);
+			//myFile << surface_name << "," << layer_name << "," << node_name << "," << shader_name << "\n";
+		}*/
+		//row.clear();
 	}
-	myFile.close();
-static void createMessage()
+	for (int i = 0; i < 3; i++)
 	{
-	AlPrintf(kPrompt, "Hello-World!");
+		AlPrintf(kPrompt, "2ndforloop");
+		myFile << "halloWelt" << ",";
+	}
+	
+	
+	
+	//get len of surfaces
+	
+	// declare array n_rows = len of surfaces, n_cols = n_features (name, mat...)
+	
+	// create csv
+	myFile.close();
+	
+}
+static void createMessage()
+{
+	
+	AlPrintf(kPrompt, "Calling Hello World");
 	doIt();
 
-	}
 }
 
 
