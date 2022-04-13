@@ -133,12 +133,12 @@ void doIt()
 	for (int i = 0; i < 3; i++)
 	{
 		AlPrintf(kPrompt, "loop");
-		/*if( surface_node = dagNode->asSurfaceNodePtr())
+		if( surface_node = dagNode->asSurfaceNodePtr())
 		{
-			//surface_name = surface_node->name();
-			//row.push_back(surface_name);
-			layer = dagNode->layer();
-			layer_name = layer->name();
+			surface_name = surface_node->name();
+			row.push_back(surface_name);
+			//layer = dagNode->layer();
+			//layer_name = layer->name();
 			//row.push_back(layer_name);
 			AlPrintf(kPrompt, "loop");
 			//node_name = dagNode->name();
@@ -148,7 +148,8 @@ void doIt()
 			//shader_name = shader->name();
 			//surfaces.push_back(row);
 			//myFile << surface_name << "," << layer_name << "," << node_name << "," << shader_name << "\n";
-		}*/
+			myFile << surface_name;
+		}
 		//row.clear();
 	}
 	for (int i = 0; i < 3; i++)
